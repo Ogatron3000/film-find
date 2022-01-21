@@ -31,27 +31,26 @@ form {
     align-items: center;
     position: relative;
     width: fit-content;
+    border-radius: 30px;
 }
 
+form:hover {
+    box-shadow: 0 1px 6px rgba(32,33,36,.28);
+}
 
 label {
     display: none;
 }
 
 input {
-    padding: 10px 35px 10px 15px;
+    padding: 10px 78px 10px 15px;
     width: 420px;
     border-radius: 30px;
     border: 1px solid lightgray;
     color: #333333;
 }
 
-input:hover {
-    box-shadow: 0 1px 6px rgba(32,33,36,.28);
-}
-
 input:focus {
-    box-shadow: 0 1px 6px rgba(32,33,36,.28);
     outline: none;
 }
 
@@ -61,21 +60,34 @@ input:focus {
     top: 0;
     display: flex;
     align-items: center;
+    height: 100%;
+    /*border: 1px orange solid;*/
 }
 
 button {
+    position: relative;
     background: transparent;
     border: none;
     cursor: pointer;
-    padding: 7px 12px 7px 7px;
+    padding: 6px;
+    margin-right: 6px;
     /*border: 1px purple solid;*/
+    height: inherit;
+}
+
+button:focus {
+    outline: none;
 }
 
 .clear {
     position: relative;
-    padding: 7px;
+    padding: 6px;
     cursor: pointer;
-    /*border: 1px solid orange;*/
+    /*border: 1px solid lightseagreen;*/
+}
+
+.clear:focus {
+    outline: none;
 }
 
 .clear::after {
@@ -87,7 +99,6 @@ button {
     position: absolute;
     top: 4px;
     right: 0;
-    cursor: auto;
 }
 
 svg {
@@ -95,4 +106,41 @@ svg {
     width: 24px;
     height: 24px;
     color: #666666;
+}
+
+.shadow {
+    box-shadow: 0 1px 6px rgba(32,33,36,.28);
+}
+
+.hidden {
+    display: none;
+}
+
+.tooltip {
+    height: 25px;
+    background-color: #333333;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 0 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -32px;
+    font-size: 12px;
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+.tooltip::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    width: 10px;
+    height: 5px;
+    border-bottom: solid 5px #333333;
+    border-left: solid 5px transparent;
+    border-right: solid 5px transparent;
 }
