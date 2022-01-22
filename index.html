@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Film Find</title>
 </head>
@@ -16,7 +16,7 @@
 <main>
     <h1>Film Find</h1>
     <form>
-        <label for="search">Search:</label>
+        <label for="search" class="offscreen">Search:</label>
         <input type="search" id="search" autocomplete="off" placeholder="Find film...">
         <div class="buttons">
             <div class="clear hidden" id="clear" tabindex="0" aria-label="Clear search" role="button">
@@ -27,8 +27,12 @@
             </button>
         </div>
     </form>
+    <div id="search-results" class="search-results hidden">
+        <h2 class="offscreen">Search results</h2>
+    </div>
 </main>
 
-<script src="script.js"></script>
+<script>// Firefox Bug - Layout was forced before the page was fully loaded.</script>
+<script src="js/script.js" type="module"></script>
 </body>
 </html>

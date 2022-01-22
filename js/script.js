@@ -1,3 +1,6 @@
+import { setFocus, toggleClear, addTooltip, removeTooltip, clearSearch, clickDivOnEnterOrSpace } from './searchBar.js';
+import {getMovies, displayNoResults, displayMovies } from './api.js';
+
 document.addEventListener('readystatechange', (e) => {
     if (document.readyState === 'complete') {
         initApp();
@@ -9,6 +12,7 @@ function initApp() {
     const search = document.querySelector('#search');
     const clear = document.querySelector('#clear');
     const button = document.querySelector('button');
+    const searchResults = document.querySelector('#search-results');
 
     // Add shadow to form when input is focused
     search.addEventListener('focus', () => form.classList.add('shadow'));
@@ -33,46 +37,17 @@ function initApp() {
     // Buttons actions
     clear.addEventListener('click', () => clearSearch(search, clear));
     clear.addEventListener('keyup', (e) => clickDivOnEnterOrSpace(e));
-    form.addEventListener('submit', (e) => submitSearch(e, search));
+    form.addEventListener('submit', (e) => submitSearch(e, search, searchResults));
 }
 
-function setFocus(search) {
-    search.focus();
-}
-
-function toggleClear(search, clear) {
-    if (clear.classList.contains('hidden')) {
-        clear.classList.remove('hidden');
-    } else if (search.value === '' && !clear.classList.contains('hidden')) {
-        clear.classList.add('hidden');
-    }
-}
-
-function addTooltip(e, text) {
-    const tooltip = document.createElement('div');
-    tooltip.innerText = text;
-    tooltip.classList.add('tooltip');
-    e.target.appendChild(tooltip);
-}
-
-function removeTooltip() {
-    document.querySelector('.tooltip').remove();
-}
-
-function clearSearch(search, clear) {
-    search.value = '';
-    clear.classList.add('hidden');
-    setFocus(search);
-}
-
-function clickDivOnEnterOrSpace(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-        e.target.click();
-    }
-}
-
-function submitSearch(e, search) {
+async function submitSearch(e, search, searchResults) {
     e.preventDefault();
-    console.log(search.value);
+    if (search.value === '') return;
+    let movies = await getMovies(search.value);
+    if (movies.length === 0) {
+        displayNoResults(searchResults);
+        return;
+    }
+    displayMovies(movies, searchResults);
     setFocus(search);
 }
