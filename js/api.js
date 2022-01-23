@@ -24,7 +24,6 @@ export function displayMovies(movies, searchResults) {
         const poster = createMoviePoster(movie);
         const wrapper = createMovieWrapper(text, poster);
         searchResults.appendChild(wrapper);
-        searchResults.appendChild(wrapper);
     })
 }
 
